@@ -10,8 +10,30 @@
     </head>
     <body>
         
-        <div id="heading"><h1>Welcome {{user}} to the Super Senior App!</h1></div>
-        
-        <p>Singal Note Page</p>
+        <div id="heading"><h1>Welcome to the Super Senior App!</h1></div>
+
+        <nav>
+            <a href="{{ url_for('index') }}"> Home || </a>
+            <a href="{{ url_for('get_notes') }}">My Notes || </a>
+            <a href="{{ url_for('new_note') }}">Add Note || </a>
+        </nav>
+
+        <h3>Singal Note Page</h3>
+
+        <form>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Text</th>
+                    <th>Date</th>
+                </tr>
+                <tr>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.text }}</td>
+                    <td>{{ note.date }}</td>
+                </tr>
+            </table>
+        </form>
+
     </body>
 </html>
