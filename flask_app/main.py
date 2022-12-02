@@ -70,12 +70,14 @@ def new_note():
             title = request.form['title']
             # get note 
             text = request.form['noteText']
+            # 1get members for task
+            members = request.form['noteMembers']
             # create time stamp
             from datetime import date 
             today = date.today()
             # format date 
             today = today.strftime("%m-%d-%Y")
-            new_record = Note(title,text, today, session['user_id'])
+            new_record = Note(title,text, members, today, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
@@ -96,10 +98,12 @@ def update_note(note_id):
             title = request.form['title']
 
             text = request.form['noteText']
+            members = request.form['noteMembers']
             note = db.session.query(Note).filter_by(id=note_id).one()
 
             note.title = title
             note.text = text
+            note.members = members
 
             db.session.add(note)
             db.session.commit()

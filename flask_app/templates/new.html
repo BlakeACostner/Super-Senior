@@ -7,6 +7,7 @@
         <title>Super Senoirs Task App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
     </head>
     <body>
         
@@ -42,21 +43,34 @@
             <p> <input type="text" name="title" value="{% if note %}{{note.title}} {% endif %}"/></p>
             <p> <label>Task Details </label></p>
 
-            <p> <textarea name="noteText"  rows="6" cols="0" >
+            <p> <textarea name="noteText"  rows="7" cols="40" >
             
                 {% if note %}
                     {{note.text}}
                 {% else %} 
-                    Add your new Task here ... 
+                    
                 {% endif %}  
                 
-            </textarea>
-        </p>
+                </textarea>
+            </p>
+
+            <p> <label>Task Members </label></p>
+            <p> <textarea name="noteMembers"  rows="7" cols="40" >
+            
+                {% if note %}
+                    {{note.text}}
+                {% else %} 
+                    
+                {% endif %}  
+                
+                </textarea>
+            </p>
+
             <p>
                 {% if note %}
-                    <input type="submit" value="Update note"/>
+                    <input type="submit" value="Update Task"/>
                 {% else %}
-                    <input type="submit" value="Add Note"/>
+                    <input type="submit" value="Add Task"/>
                 {% endif %}
             </p>
         </form>
