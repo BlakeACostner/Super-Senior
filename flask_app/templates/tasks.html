@@ -11,30 +11,32 @@
     </head>
     <body>
         
-        <div id="heading"><h1>Welcome to the Super Senior Task App!</h1></div>
+        <div id="heading"><h1>Super Senior Task App</h1></div>
         
         <nav>
-            <a href="{{ url_for('index') }}"> Home || </a>
-            <a href="{{ url_for('get_tasks') }}">My Tasks || </a>
-            <a href="{{ url_for('new_task') }}">Add Task || </a>
+            <a href="{{ url_for('index') }}"> Home</a> ||
+            <a href="{{ url_for('get_tasks') }}">My Tasks</a> ||
+            <a href="{{ url_for('new_task') }}">Add Task</a> ||
+            {% if user %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </nav>
-        {% if user %}
-        <nav>
-            <a href="{{ url_for('logout') }}">Logout</a>
-        </nav>
-        {% endif %}
         
         <h3>Tasks</h3>
 
         <table>
             <tr>
-                <th>Title</th>
-                <th>Date</th>
+                <th width="10%"> Title</th>
+                <th width="10%"> Date</th>
+                <th width="10%"> Members</th>
+                <th width="10%"> Task Info</th>
             </tr>
             {% for task in tasks %}
             <tr>
                 <td><a href="{{ url_for('get_task',task_id=task.id) }}"> {{ task.title }} </a></td>
+                <td>{{ task.date }}</td>
                 <td>{{ task.members }}</td>
+                <td>{{ task.text }}</td>
                 <td><a href="{{ url_for('update_task', task_id=task.id) }}"> Edit </a></td>
                 <td>
                     <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post">

@@ -7,26 +7,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
 </head>
     <body>
+        <div id="heading"><h1>Super Senior Task App</h1></div>
         <div class="navdiv">
 
             <nav>
                 <a href="{{ url_for('index') }}"> Home</a> ||
                 <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
                 <a href="{{ url_for('new_task') }}">Add Task</a>
+                {% if user %}
+                    <a href="{{ url_for('logout') }}">Logout</a> 
+                {% else %}
+                    || <a href="{{ url_for('login') }}"> Sign In</a> ||
+                    <a href="{{ url_for('register') }}"> Register</a>
+                {% endif %}
             </nav>
-            {% if user %}
-            <nav>
-                <a href="{{ url_for('logout') }}">Logout</a>
-            </nav>
-            {% else %}
-            <nav>
-                <a href="{{ url_for('login') }}"> Sign In</a> ||
-                <a href="{{ url_for('register') }}"> Register</a>
-            </nav>
-            {% endif %}
         
         </div>
-        <h1>Welcome {% if user %}{{user}}{% endif %}to the 49er Tasks App!</h1>
 
         <h2>Use this site to maintain and organize your tasks.</h2>
         <div class="formwrapper">
