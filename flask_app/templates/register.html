@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
 </head>
     <body>
         <div id="heading"><h1>Super Senior Task App</h1></div>
@@ -24,7 +24,6 @@
         
         </div>
 
-        <h2>Use this site to maintain and organize your tasks.</h2>
         <div class="formwrapper">
             <h2 class="title">Register</h2>
             <form method="POST" action="/register">

@@ -4,10 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Super-Senoirs Task App">
-        <title>Super Senoirs Task App</title>
+        <title>Task App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
     </head>
     <body>
         
@@ -25,8 +24,12 @@
             {% endif %}
         </nav>
 
-        <p>Home page!</p>
-
+        <div class="homewrapper">
+            <h2> Welcome to the Super Senoir Task App</h2>
+            <p> If you do not have an account you can make one by clicking the register tab above. 
+                If you do have an account make sure you login to be able to see, edit, and add tasks. 
+            </p>
+        </div>
 
     </body>
 </html>

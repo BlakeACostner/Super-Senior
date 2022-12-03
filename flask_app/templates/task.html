@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="UNCC Tasks App">
-        <title>UNCC Tasks App - View your Task</title>
+        <title>Task App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='tasks.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='new.css') }}">
     </head>
     <body>
 
@@ -53,9 +54,11 @@
         {% endif %}
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">
             <div class="formwrapper">
-                <h2 class="title">Add a comment</h2>
                     <div class="form-field">
-                        {{ form.comment.label }} <br/> {{ form.comment }}
+                        
+                            <!--- dont know if we need this so i left it{{ form.comment.label }} -->
+                         
+                            <br/> {{ form.comment }}
                     </div>
                     {{ form.submit }}
             </div>

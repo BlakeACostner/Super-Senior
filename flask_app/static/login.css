@@ -1,31 +1,54 @@
 form {
-    background: white;
-    width: 100%;
+    background: #623CEA;
+    width: 100%; 
   }
   
   .form-field {
     position: relative;
+    
+
+    background: white;
+    width: 270px;
+    padding: 15px;
+
+    margin: 25px 0px; 
+    font-size: 1em;
+    min-width: 270px;
+    box-shadow: 0 0 5px rgb(0, 0, 0.15);
+    border-radius: 5px/5px;
   }
   
   .title {
+    position: relative;
+    padding: 5px 15px 5px 15px;
     font-size: 1.7rem;
     font-weight: 300;
-    border-bottom: 1px solid #dbe3ec;
-    padding: 5px;
+    width: 270px;
     margin: 0 0 40px 0;
+
+    text-align: center;
+
+    background: white;
+    box-shadow: 0 0 5px rgb(0, 0, 0.15);
+    border-radius: 5px/5px;   
   }
   
   .formwrapper {
     position: relative;
-    background: white;
+    background: #623CEA;
     width: 350px;
-    box-shadow: 0 0 5px rgba(65, 67, 144, 0.1);
-    padding: 10px;
+    padding: 15px;
+
+    margin: 100px 570px; 
+    font-size: 1em;
+    min-width: 300px;
+    box-shadow: 0 0 20px rgb(0, 0, 0.15);
+    border-radius: 10px/10px;
   }
   
   label {
     font-size: .9em;
-    color: green;
+    color: #2D2E2E;
     margin-bottom: 3px;
     display: block;
     font-weight: 300;
@@ -35,7 +58,7 @@ form {
     padding: 10px 13px;
     margin-bottom: 15px;
     border-radius: 2px;
-    border: 1px solid #d4d9e3;
+    border: 1px solid #623CEA;
     font-weight: 200;
     color: #4d5060;
     font-family: 'Poppins', sans-serif;
@@ -44,44 +67,48 @@ form {
   }
   
   input[type="text"]::placeholder {
-    color: #d4d9e3;
+    color: #623CEA;
   }
   
   input[type="text"]:hover,
   input[type="password"]:hover,
   textarea:hover,
   select:hover {
-    border-color: green;
-    background: lightyellow;
+    border-color: #2D2E2E;
+    background: #623CEA;
   }
   
   input[type="text"]:focus,
   input[type="password"]:focus,
   textarea:focus {
-    background: white;
-    border-color: green;
+    background: #623CEA;
+    border-color: #2D2E2E;
     box-shadow: unset;
   }
   
   input[type="submit"] {
-    background: green;
+    background: #F6F0ED;
     border: 0;
-    color: white;
+    color: black;
     border-radius: 2px;
     margin-top: 15px;
     font-weight: 400;
-    border: 1px solid green;
+    border: 1px solid #2D2E2E;
     transition: all .3s ease-out;
+
+    background: white;
+    box-shadow: 0 0 5px rgb(0, 0, 0.15);
+    border-radius: 5px/5px; 
   }
   
   input[type="submit"]:hover {
     cursor: pointer;
-    background: white;
-    color: green;
+    color:white; 
+    background: rgb(113, 109, 109);
   }
   
   .success-wrapper {
-    background: white;
+    background: #623CEA;
     width: 350px;
     box-shadow: 0 0 5px rgba(65, 67, 144, 0.1);
     padding: 50px;

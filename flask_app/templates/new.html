@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Super Senoirs Task App">
-        <title>Super Senoirs Task App</title>
+        <title>Task App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='new.css') }}">
+
     </head>
     <body>
         
@@ -36,11 +37,11 @@
     
     
     
-            <p> <label>Title </label></p>
-            <p> <input type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
-            <p> <label>Task Details </label></p>
+            <p> <label>Title: </label></p>
+            <p> <input class="titletext" type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
+            <p> <label>Task Details: </label></p>
 
-            <p> <textarea name="taskText"  rows="7" cols="40" >
+            <p> <textarea class="textarea" name="taskText"  rows="7" cols="40" >
             
                 {% if task %}
                     {{task.text}}
@@ -51,8 +52,8 @@
                 </textarea>
             </p>
 
-            <p> <label>Task Members </label></p>
-            <p> <textarea name="taskMembers"  rows="7" cols="40" >
+            <p> <label>Task Members: </label></p>
+            <p> <textarea class="textarea" name="taskMembers"  rows="7" cols="40" placeholder="Enter Task Info...">
             
                 {% if task %}
                     {{task.text}}
@@ -65,9 +66,9 @@
 
             <p>
                 {% if task %}
-                    <input type="submit" value="Update Task"/>
+                    <input class="button" type="submit" value="Update Task"/>
                 {% else %}
-                    <input type="submit" value="Add Task"/>
+                    <input class="button" type="submit" value="Add Task"/>
                 {% endif %}
             </p>
         </form>
