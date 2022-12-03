@@ -6,12 +6,12 @@ from models import User
 from database import db
 
 
+# Register Form class, sets and gets password, email, name etc.
 class RegisterForm(FlaskForm):
     class Meta:
         csrf = False
 
     firstname = StringField('First Name', validators=[Length(1, 10)])
-
     lastname = StringField('Last Name', validators=[Length(1, 20)])
 
     email = StringField('Email', [
@@ -33,6 +33,7 @@ class RegisterForm(FlaskForm):
             raise ValidationError('Username already in use.')
 
 
+# Login Form class gets email, password and checks the hash 
 class LoginForm(FlaskForm):
     class Meta:
         csrf = False
@@ -50,11 +51,10 @@ class LoginForm(FlaskForm):
         if db.session.query(User).filter_by(email=field.data).count() == 0:
             raise ValidationError('Incorrect username or password.')
 
-
+# Comment Form class
 class CommentForm(FlaskForm):
     class Meta:
         csrf = False
 
     comment = TextAreaField('Comment',validators=[Length(min=1)])
-
     submit = SubmitField('Add Comment')

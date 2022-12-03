@@ -1,6 +1,7 @@
 from database import db 
 import datetime
 
+# Note model and sets to database  
 class Note(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     title = db.Column("title", db.String(200))
@@ -10,6 +11,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     comments = db.relationship("Comment", backref="note", cascade="all, delete-orphan", lazy=True)
 
+    # gets and sets 
     def __init__(self, title, text, date, members, user_id):
         self.title = title
         self.text = text
@@ -17,6 +19,9 @@ class Note(db.Model):
         self.members = members
         self.user_id = user_id
 
+
+
+# User class and sets to database
 class User(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     first_name = db.Column("first_name", db.String(100))
@@ -27,6 +32,7 @@ class User(db.Model):
     notes = db.relationship("Note", backref="user", lazy=True)
     comments = db.relationship("Comment", backref="user",lazy=True)
 
+    # gets and sets 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
         self.last_name = last_name
@@ -34,6 +40,9 @@ class User(db.Model):
         self.password = password
         self.registered_on = datetime.date.today()
 
+
+
+# Comment class and sets to database
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_posted = db.Column(db.DateTime, nullable=False)
@@ -41,6 +50,7 @@ class Comment(db.Model):
     note_id = db.Column(db.Integer, db.ForeignKey("note.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
+    # gets and sets 
     def __init__(self, content, note_id, user_id):
         self.date_posted = datetime.date.today()
         self.content = content
