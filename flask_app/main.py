@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, session # 
 from forms import RegisterForm, LoginForm, CommentForm
 from flask_bcrypt import Bcrypt
 from database import db
-from models import Note as Note 
+from models import Task as Task 
 from models import User as User
 from models import Comment as Comment
 
@@ -23,7 +23,7 @@ app.config['SECRETY_KEY'] = 'SE3155'
 
 
 # sets the database 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_note_app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_task_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 
 
@@ -47,53 +47,53 @@ def index():
 
 
 
-# Notes route
-@app.route('/notes')
-def get_notes():
+# Tasks route
+@app.route('/tasks')
+def get_tasks():
     if session.get('user'):
-        # gets notes from user's database 
-        my_notes = db.session.query(Note).filter_by(user_id=session['user_id']).all()
+        # gets tasks from user's database 
+        my_tasks = db.session.query(Task).filter_by(user_id=session['user_id']).all()
 
-        return render_template('notes.html', notes=my_notes, user=session['user'])
+        return render_template('tasks.html', tasks=my_tasks, user=session['user'])
     else:
         return redirect(url_for('login'))
 
 
 
-# Specific note route 
-@app.route('/notes/<note_id>')
-def get_note(note_id):
+# Specific task route 
+@app.route('/tasks/<task_id>')
+def get_task(task_id):
     
     if session.get('user'):
-        # gets note from database and renders it 
-        my_note = db.session.query(Note).filter_by(id=note_id, user_id=session['user_id']).one()
+        # gets task from database and renders it 
+        my_task = db.session.query(Task).filter_by(id=task_id, user_id=session['user_id']).one()
         form = CommentForm()
-        return render_template('note.html', note = my_note, user =session['user'], form=form)
+        return render_template('task.html', task = my_task, user =session['user'], form=form)
     else:
         return redirect(url_for('login'))
 
 
 
-# New note route
-@app.route('/notes/new', methods=['GET','POST'])
-def new_note():
+# New task route
+@app.route('/tasks/new', methods=['GET','POST'])
+def new_task():
     if session.get('user'):
         #check method 
         if request.method == 'POST':
-            # gets note objects 
+            # gets task objects 
             title = request.form['title']
-            text = request.form['noteText']
-            members = request.form['noteMembers']
+            text = request.form['taskText']
+            members = request.form['taskMembers']
             # create time stamp
             from datetime import date 
             today = date.today()
             # format date 
             today = today.strftime("%m-%d-%Y")
-            new_record = Note(title,text, members, today, session['user_id'])
+            new_record = Task(title,text, members, today, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
-            return redirect(url_for('get_notes'))
+            return redirect(url_for('get_tasks'))
         else:
             return render_template('new.html', user = session['user'])
     else:
@@ -101,64 +101,64 @@ def new_note():
 
 
 
-# Edited note route
-@app.route('/notes/edit/<note_id>', methods=['GET', 'POST'])
-def update_note(note_id):
+# Edited task route
+@app.route('/tasks/edit/<task_id>', methods=['GET', 'POST'])
+def update_task(task_id):
     
     if session.get('user'):
         if request.method == 'POST':
 
-            # gets note objects 
+            # gets task objects 
             title = request.form['title']
-            text = request.form['noteText']
-            members = request.form['noteMembers']
+            text = request.form['taskText']
+            members = request.form['taskMembers']
 
-            note = db.session.query(Note).filter_by(id=note_id).one()
-            note.title = title
-            note.text = text
-            note.members = members
+            task = db.session.query(Task).filter_by(id=task_id).one()
+            task.title = title
+            task.text = text
+            task.members = members
 
             # commits 
-            db.session.add(note)
+            db.session.add(task)
             db.session.commit()
 
-            return redirect(url_for('get_notes'))
+            return redirect(url_for('get_tasks'))
         else:
-            my_note = db.session.query(Note).filter_by(id=note_id).one()
-            return render_template('new.html', note=my_note, user=session['user'])
+            my_task = db.session.query(Task).filter_by(id=task_id).one()
+            return render_template('new.html', task=my_task, user=session['user'])
     else: 
         return redirect(url_for('login'))
 
 
 
-# Route for deleting note 
-@app.route('/notes/delete/<note_id>', methods=['POST'])
-def delete_note(note_id):
+# Route for deleting task 
+@app.route('/tasks/delete/<task_id>', methods=['POST'])
+def delete_task(task_id):
     if session.get('user'):
-        my_note = db.session.query(Note).filter_by(id=note_id).one()
-        db.session.delete(my_note)
+        my_task = db.session.query(Task).filter_by(id=task_id).one()
+        db.session.delete(my_task)
         db.session.commit()
 
-        return redirect(url_for('get_notes'))
+        return redirect(url_for('get_tasks'))
     else:
         return redirect(url_for('login'))
 
 
 
 # Route for posting a comment to a task 
-@app.route('/notes/<note_id>/comment', methods=['POST'])
-def new_comment(note_id):
+@app.route('/tasks/<task_id>/comment', methods=['POST'])
+def new_comment(task_id):
     if session.get('user'):
         comment_form = CommentForm()
         # validate_on_submit only validates using POST
         if comment_form.validate_on_submit():
             # get comment data
             comment_text = request.form['comment']
-            new_record = Comment(comment_text, int(note_id), session['user_id'])
+            new_record = Comment(comment_text, int(task_id), session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
-        return redirect(url_for('get_note', note_id=note_id))
+        return redirect(url_for('get_task', task_id=task_id))
     else:
         return redirect(url_for('login'))
 
@@ -185,7 +185,7 @@ def register():
         session['user'] = first_name
         session['user_id'] = new_user.id  
         # show user dashboard view
-        return redirect(url_for('get_notes'))
+        return redirect(url_for('get_tasks'))
 
     # error register view 
     return render_template('register.html', form=form)
@@ -205,8 +205,8 @@ def login():
             # password match and adding user info to the session
             session['user'] = the_user.first_name
             session['user_id'] = the_user.id
-            # render note view
-            return redirect(url_for('get_notes'))
+            # render task view
+            return redirect(url_for('get_tasks'))
 
         # password check failed
         login_form.password.errors = ["Incorrect username or password."]

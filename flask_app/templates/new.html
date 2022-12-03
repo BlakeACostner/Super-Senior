@@ -15,8 +15,8 @@
 
         <nav>
             <a href="{{ url_for('index') }}"> Home || </a>
-            <a href="{{ url_for('get_notes') }}">My Tasks ||</a>
-            <a href="{{ url_for('new_note') }}">Add Task || </a>
+            <a href="{{ url_for('get_tasks') }}">My Tasks ||</a>
+            <a href="{{ url_for('new_task') }}">Add Task || </a>
         </nav>
         {% if user %}
         <nav>
@@ -25,8 +25,8 @@
         {% endif %}
 
 
-        {% if note %}
-            <form action="{{ url_for('update_note', note_id=note.id)}}" method="post">
+        {% if task %}
+            <form action="{{ url_for('update_task', task_id=task.id)}}" method="post">
         {% else %}
             
 
@@ -40,13 +40,13 @@
     
     
             <p> <label>Title </label></p>
-            <p> <input type="text" name="title" value="{% if note %}{{note.title}} {% endif %}"/></p>
+            <p> <input type="text" name="title" value="{% if task %}{{task.title}} {% endif %}"/></p>
             <p> <label>Task Details </label></p>
 
-            <p> <textarea name="noteText"  rows="7" cols="40" >
+            <p> <textarea name="taskText"  rows="7" cols="40" >
             
-                {% if note %}
-                    {{note.text}}
+                {% if task %}
+                    {{task.text}}
                 {% else %} 
                     
                 {% endif %}  
@@ -55,10 +55,10 @@
             </p>
 
             <p> <label>Task Members </label></p>
-            <p> <textarea name="noteMembers"  rows="7" cols="40" >
+            <p> <textarea name="taskMembers"  rows="7" cols="40" >
             
-                {% if note %}
-                    {{note.text}}
+                {% if task %}
+                    {{task.text}}
                 {% else %} 
                     
                 {% endif %}  
@@ -67,7 +67,7 @@
             </p>
 
             <p>
-                {% if note %}
+                {% if task %}
                     <input type="submit" value="Update Task"/>
                 {% else %}
                     <input type="submit" value="Add Task"/>
