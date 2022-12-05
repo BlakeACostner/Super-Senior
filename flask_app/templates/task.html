@@ -27,12 +27,12 @@
 
         <h1>Task detials</h1>
 
-        <table>
+        <table class="tasktable">
             <tr>
                 <th>Title</th>
                 <th>Date</th>
                 <th>Text</th>
-                <th>Members</th>
+                <th>Members</th> 
             </tr>
             <tr>
                 <td width='10%'>{{ task.title }}</td>
@@ -44,7 +44,6 @@
         
         {% if task.comments %}
         {% if task.comments|length > 0 %}
-        <h2>Comments</h2>
         <ul>
         {% for comment in task.comments %}
             <li>{{ comment.content }}</li>
@@ -54,14 +53,15 @@
         {% endif %}
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">
             <div class="formwrapper">
+                <h2>Comment</h2>
                     <div class="form-field">
                         
                             <!--- dont know if we need this so i left it{{ form.comment.label }} -->
                          
                             <br/> {{ form.comment }}
-                    </div>
+                    </div>  
                     {{ form.submit }}
-            </div>
+             </div>
         </form>
     </body>
 </html>

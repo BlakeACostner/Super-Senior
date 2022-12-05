@@ -1,21 +1,15 @@
 table{
     background: #623CEA;
     width: 600px;
-    border: 1px solid;
-    border-color: black;
 }
 
     th {
         color: white;
         width: 125px;
-        border: 1px solid;
-        border-color: black;
     }
 
     td {
         text-align: center;
-        border: 1px solid;
-        border-color: black;
     }
 
     .taskswrapper{
@@ -65,6 +59,6 @@ table{
         border-style: solid;
     }
 
-h2 {
-    color: black;
-}
+    .infotext {
+    color: white;
+    }

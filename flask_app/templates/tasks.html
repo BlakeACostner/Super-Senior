@@ -7,7 +7,7 @@
         <title>Task App</title>
         <!-- styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='tasks.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='task.css') }}">
     </head>
     <body>
         
@@ -37,7 +37,7 @@
                             <input class="button" type="submit" value="{{ task.title }}">
                         </form>
                     </td>
-                    <td>{{ task.members }}</td>
+                    <td class="infotext">{{ task.date }}</td>
                     <td class="buttontd">
                         <form action="{{ url_for('update_task', task_id=task.id) }}" >
                             <input class="button" type="submit" value="Edit">
