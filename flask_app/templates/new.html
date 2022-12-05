@@ -53,16 +53,20 @@
             </p>
 
             <p> <label>Task Members: </label></p>
-            <p> <textarea class="textarea" name="taskMembers"  rows="7" cols="40" placeholder="Enter Task Info...">
+            <p> <textarea class="textarea" name="taskMembers"  rows="7" cols="40">
             
                 {% if task %}
-                    {{task.text}}
+                    {{task.members}} 
                 {% else %} 
                     
                 {% endif %}  
                 
                 </textarea>
             </p>
+
+            <p> <label>Task Importance: </label></p>
+            <p> <input class="titletext" type="text" name="importanceValue" value="{% if task %}{{task.importance}} {% endif %}"/></p>
+
 
             <p>
                 {% if task %}

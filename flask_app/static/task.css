@@ -1,6 +1,6 @@
 table{
     background: #623CEA;
-    width: 600px;
+    width: 500px;
 }
 
     th {
@@ -15,8 +15,8 @@ table{
     .taskswrapper{
         position: relative;
         background: #623CEA;
-        width: 600px;
-        padding: 15px;
+        width: 500px;
+        padding: 20px;
     
         margin: 0px 0px; 
         font-size: 1em;
@@ -62,3 +62,4 @@ table{
     .infotext {
     color: white;
     }
+

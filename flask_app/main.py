@@ -89,7 +89,10 @@ def new_task():
             today = date.today()
             # format date 
             today = today.strftime("%m-%d-%Y")
-            new_record = Task(title,text, members, today, session['user_id'])
+            #importance 
+            importance = request.form['importanceValue']
+
+            new_record = Task(title, text, today, members, importance, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
@@ -112,11 +115,13 @@ def update_task(task_id):
             title = request.form['title']
             text = request.form['taskText']
             members = request.form['taskMembers']
+            importance = request.form['importanceValue']
 
             task = db.session.query(Task).filter_by(id=task_id).one()
             task.title = title
             task.text = text
             task.members = members
+            task.importance = importance
 
             # commits 
             db.session.add(task)
