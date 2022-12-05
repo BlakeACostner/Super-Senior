@@ -1,11 +1,10 @@
 ﻿#User Story 1 when registering a new user 
-Feature: Adding a new user. In order to use the application everyone needs to be registered as a user so we can save their data to their account. 
+Feature: Creating an account
 Scenario: I am a new user trying to register a new account
 Given a valid email address 
-Given a valid username
-Given a role selection
+Given a valid password
 Given a first and last name
-When I press “add user” 
+When I press “register” 
 Then I will have registered a new account
 
 
