@@ -25,16 +25,17 @@
 
         
 
-        <h1>Task detials</h1>
+        <h1 class="taskDetials">Task detials</h1>
 
         <table class="tasktable">
             <tr>
                 <th>Title</th>
                 <th>Members</th>
-                <th>Task Details</th>
+                <th>Task Notes</th>
                 <th>Date Created</th> 
                 <th>Importance</th>
                 <th>Status</th>
+                <th>Task Deadline</th>
             </tr>
             <tr>
                 <td width='10%'>{{ task.title }}</td>
@@ -43,18 +44,21 @@
                 <td width='10%'>{{ task.date }}</td>
                 <td width='10%'>{{ task.importance }}</td>
                 <td width='10%'>{{ task.status }}</td>
+                <td width='10%'>{{ task.end_date }}</td>
             </tr>
         </table>
         
-        {% if task.comments %}
-        {% if task.comments|length > 0 %}
-        <ul>
-        {% for comment in task.comments %}
-            <li>{{ comment.content }}</li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-        {% endif %}
+        <div class="commentwrapper">
+            {% if task.comments %}
+            {% if task.comments|length > 0 %}
+            <ul>
+            {% for comment in task.comments %}
+                <li>{{ comment.content }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            {% endif %}
+        </div>
         <form action="{{ url_for('new_comment', task_id=task.id) }}" method="post">
             <div class="formwrapper">
                 <h2>Comment</h2>

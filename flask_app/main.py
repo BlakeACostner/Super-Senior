@@ -84,6 +84,7 @@ def new_task():
             title = request.form['title']
             text = request.form['taskText']
             members = request.form['taskMembers']
+            end_date = request.form['taskEndDate']
             status = request.form['taskStatus']
             # create time stamp
             from datetime import date 
@@ -93,7 +94,7 @@ def new_task():
             #importance 
             importance = request.form['importanceValue']
 
-            new_record = Task(title, text, today, members, status, importance, session['user_id'])
+            new_record = Task(title, text, today, members, end_date, status, importance, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
 
@@ -116,6 +117,7 @@ def update_task(task_id):
             title = request.form['title']
             text = request.form['taskText']
             members = request.form['taskMembers']
+            end_date = request.form['taskEndDate']
             status = request.form['taskStatus']
             importance = request.form['importanceValue']
 
@@ -123,6 +125,7 @@ def update_task(task_id):
             task.title = title
             task.text = text
             task.members = members
+            task.end_date = end_date
             task.status = status
             task.importance = importance
 
@@ -236,36 +239,5 @@ def logout():
 
 
 
-@app.route('/profile')
-def profile():
-    if session.get('user'):
-        # gets user's session if they have an account 
-        form = RegisterForm()
-
-        if request.method == 'POST' and form.validate_on_submit():
-            
-            # generates password hash
-            h_password = bcrypt.generate_password_hash(request.form['password'])
-            
-            # get entered user data
-            first_name = request.form['firstname']
-            last_name = request.form['lastname']
-            # create new user
-            new_user = User(first_name, last_name, request.form['email'], h_password)
-            # add user to database and commit
-            db.session.add(new_user)
-            db.session.commit()
-            # save the user's name to the session
-            session['user'] = first_name
-            session['user_id'] = new_user.id  
-            # show user dashboard view
-
-
-        return render_template('profile.html', user = session['user'], form=form)
-    else:
-        return redirect(url_for('login'))
-
-
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
-
 
