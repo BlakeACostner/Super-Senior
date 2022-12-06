@@ -48,7 +48,7 @@ And the new task will be saved
 And added to the backlog
 
 #User Story 5 
-Feature: Delete a task 
+Feature: Delete a Task 
 Scenario: I am a registered user wanting to delete a task
 Given an already posted Task 
 Given that I am on the "my tasks" screen
@@ -56,7 +56,7 @@ When I press Delete
 Then that task will be deleted
 
 #User Story 6 
-Feature: Task comment 
+Feature: Task Comment 
 Scenario: I am a registered user wanting to comment on a task
 Given an already posted Task 
 Given that I am on the specific Task page
@@ -83,4 +83,18 @@ Scenario: I am a registered user wanting to add a name to a task
 Given that I am on either the add task or edit task screen
 Given I type a name for the task into the correct input aera and press update or add task
 Then the task will have a name 
+
+#User Story 10
+Feature: Task Deadline
+Scenario: I am a registered user wanting to add a deadline date to a task 
+Given that I am on either the add task or edit task screen
+Given I enter a date into the deadline input and press update or add task 
+Then the task will have a deadline date 
+
+#User Story 11
+Feature: Task Status
+Scenario: I am a registered user wanting to add a status to a task 
+Given that I am on either the add task or edit task screen 
+Given I select a status from the drop down and press update or add task 
+Then the task will have a status 
 
