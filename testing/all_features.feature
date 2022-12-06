@@ -43,7 +43,7 @@ Then the edit task will be posted with the edits
 
 #User Story 4
 Feature: Adding a task
-Scenario: I want to add a task to my project 
+Scenario: I am a registed user wanting to add a task to my project 
 Given a Task Name
 Given  Task Members
 Given Task info
@@ -52,3 +52,41 @@ When I press “Add Task”
 Then I will be taken to the my task screen 
 And the new task will be saved 
 And added to the backlog
+
+
+#User Story 5 
+Feature: Delete a task 
+Scenario: I am a registerd user wanting to delete a task
+Given a already posted Task 
+Given that I am on the "my tasks" screen
+When I press Delete 
+Then that task will be deleted
+
+
+#User Story 6 
+Feature: Task comment 
+Scenario: I am a registerd user wanting to comment on a task
+Given a already posted Task 
+Given that I am on the specific Task page
+When I type in a comment into the comment text area and press comment
+Then the comment will be posted below the task details 
+
+#User Story 7
+Feature: Task importance 
+Scenario: I am a registerd user wanting to rate a task on a scale of 0-10 importance 
+Given I am on either the add task or edit task screen
+Given I type in a importance "score" of 0-10 and I press update or add task
+Then the task will have a importance rating 
+
+#User Story 8 
+Feature: Task Members 
+Scenario: I am a registerd user wanting to add members to a task 
+Given I am on either the add task or edit task screen 
+Given I type in Members names into the correct text area and press update or add task 
+Then the task will have members associated with it 
+
+#User Story 9
+Feature: Task Name 
+Scenrio: I am a registerd user wanting to add a name to a task 
+
+
