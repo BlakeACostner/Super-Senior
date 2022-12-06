@@ -1,4 +1,4 @@
-﻿#User Story 1 when registering a new user 
+﻿#User Story 1
 Feature: Creating an account
 Scenario: I am a new user trying to register a new account
 Given a valid email address 
@@ -14,6 +14,7 @@ Given a first and last name
 Given a valid email address but it is already registered 
 When I press “add user:
 Then I will be given an error saying email is already being used
+
 
 
 #User Story 2
