@@ -8,16 +8,18 @@ class Task(db.Model):
     text = db.Column("text", db.String(100))
     date = db.Column("date", db.String(50))
     members = db.Column("members", db.String(100))
+    status = db.Column("status", db.String(20))
     importance = db.Column("importance", db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     comments = db.relationship("Comment", backref="task", cascade="all, delete-orphan", lazy=True)
 
     # gets and sets 
-    def __init__(self, title, text, date, members, importance, user_id):
+    def __init__(self, title, text, date, members, status, importance, user_id):
         self.title = title
         self.text = text
         self.date = date
         self.members = members
+        self.status = status
         self.importance = importance
         self.user_id = user_id
 
