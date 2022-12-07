@@ -9,7 +9,6 @@
     <body>
         <div id="heading"><h1>Super Senior Task App</h1></div>
         <div class="navdiv">
-
             <nav>
                 <a href="{{ url_for('index') }}"> Home</a> ||
                 <a href="{{ url_for('get_tasks') }}"> My Tasks</a> ||
@@ -21,8 +20,8 @@
                     <a href="{{ url_for('register') }}"> Register</a>
                 {% endif %}
             </nav>
-        
         </div>
+
 
         <div class="formwrapper">
             <h2 class="title">Register</h2>
@@ -74,7 +73,6 @@
                 </div>
                 {{ form.submit }}
             </form>
-
         </div>
     </body>
 </html>

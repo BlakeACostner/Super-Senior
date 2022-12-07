@@ -26,12 +26,6 @@
         {% if task %}
             <form action="{{ url_for('update_task', task_id=task.id)}}" method="post">
         {% else %}
-            
-
-
-
-
-
             <form action="new" method="post">
         {% endif %}
     
@@ -44,7 +38,6 @@
             <p> <input type="date" name="taskEndDate"></p>
 
             <p> <label>Task Notes: </label></p>
-
             <p> <textarea class="textarea" name="taskText"  rows="7" cols="40" >
             
                 {% if task %}
@@ -61,10 +54,8 @@
             
                 {% if task %}
                     {{task.members}} 
-                {% else %} 
-                    
+                {% else %}   
                 {% endif %}  
-                
                 </textarea>
             </p>
 
@@ -91,6 +82,5 @@
                 {% endif %}
             </p>
         </form>
-
     </body>
 </html>
