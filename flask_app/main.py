@@ -12,7 +12,8 @@ from models import Comment as Comment
 
 
 
- # creates the app
+# code edited by Seth Jones
+# creates the app
 app = Flask(__name__)    
 
 

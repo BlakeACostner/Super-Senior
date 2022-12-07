@@ -1,6 +1,9 @@
 from database import db 
 import datetime
 
+
+
+# code edited by Seth Jones
 # Task model and sets to database  
 class Task(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
